@@ -4,8 +4,8 @@ var wave = (function (){
 	var context = canvas.getContext('2d');
 	var x = 0;
 	var y = window.innerHeight / 2;
-	var radius = 1/2;
-    var frameRate = 10
+	var radius = 1 / 2;
+    var frameRate = 33;
 	context.fillStyle = "rgba(0, 0, 0, 1.0)";
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	canvas.width = window.innerWidth;
@@ -23,11 +23,13 @@ var wave = (function (){
 	};
 
 	var animate = function () {
-		draw();
-		if (x > canvas.width) {
-			x = 0;
-		} else {
-			x++;
+		for (var i = 0; i < canvas.width; i++) {
+			draw();
+			if (x > canvas.width) {
+				x = 0;
+			} else {
+				x++;
+			}
 		}
 	}
 
