@@ -25,19 +25,18 @@ var wave = (function (){
 	var animate = function () {
 		draw();
     	r = Math.random()
+    	if (r < 0.5) {
+    	    y++;
+    	} else {
+    		y--;
+    	}
 		if (x > canvas.width) {
 			x = 0;
+			y = window.innerHeight / 2;
   			context.clearRect(0, 0, canvas.width, canvas.height);
 		} else {
 			x++;
 		}
-		if (x > 0) {
-    		if (r < 0.5) {
-    		    y++;
-    		} else {
-    			y--;
-    		}
-    	}
 	}
 
 	var start = function () {
