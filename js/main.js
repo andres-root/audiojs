@@ -8,15 +8,16 @@ var wave = (function (){
 	var setUp = function () {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
+		context.fillStyle = "rgba(0, 0, 0, 1.0)";
+		context.fillRect(0, 0, canvas.width, canvas.height);
 	};
 
 	var draw = function () {
 		setUp();
-		context.fillStyle()
 	};
 
 	return {
-		setUp: setUp,
 		draw: draw
 	}
 })();
+wave.draw();
