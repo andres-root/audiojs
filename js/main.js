@@ -4,26 +4,26 @@ var wave = (function (){
 	var context = canvas.getContext('2d');
 	var x = 0;
 	var y = window.innerHeight / 2;
-	var radius = 1;
-    var frameRate = 1000/30
+	var radius = 1/2;
+    var frameRate = 10
+	context.fillStyle = "rgba(0, 0, 0, 1.0)";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	context.beginPath();
 
 
 	var setUp = function () {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-		context.fillStyle = "rgba(0, 0, 0, 1.0)";
-		context.fillRect(0, 0, canvas.width, canvas.height);
 	};
 
 	var draw = function () {
-		setUp();
-		context.beginPath();
 		context.arc(x, y, radius, 0, 2 * Math.PI, false);
 		context.fillStyle = '#0f0';
 		context.fill();
 	};
 
 	var animate = function () {
+		draw();
 		if (x > canvas.width) {
 			x = 0;
 		} else {
