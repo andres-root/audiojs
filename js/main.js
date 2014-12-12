@@ -17,7 +17,8 @@ var wave = (function (){
 	};
 
 	var draw = function () {
-		context.fillRect(x, y, Math.sin(x * Math.PI/180) * 5, Math.sin(x * Math.PI/180 * 5));
+		//context.fillRect(x, y, Math.sin(x * Math.PI/180) * 5, Math.sin(x * Math.PI/180 * 5));
+		context.fillRect(x, y, radius, 2 * Math.PI, false);
 		context.fillStyle = '#0f0';
 		context.fill();
 	};
