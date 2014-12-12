@@ -7,30 +7,29 @@ var wave = (function (){
 	var radius = 1/2;
     var frameRate = 1;
 	context.fillStyle = "rgba(0, 0, 0, 1.0)";
-	context.fillRect(0, 0, canvas.width, canvas.height);
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-	context.beginPath();
+	context.fillRect(0, 0, canvas.width, canvas.height);
 
 
 	var setUp = function () {
 	};
 
 	var draw = function () {
-		//context.fillRect(x, y, Math.sin(x * Math.PI/180) * 5, Math.sin(x * Math.PI/180 * 5));
-		context.fillRect(x, y, radius, 2 * Math.PI, false);
+		context.beginPath();
+		context.arc(x, y, radius, 0, 2 * Math.PI, false);
 		context.fillStyle = '#0f0';
 		context.fill();
 	};
 
 	var animate = function () {
 		draw();
-		y = Math.sin(x * Math.PI / 180);
-		if(y >= 0 ) {
-			y = 100 - (y - 0) * 50;
-		} else {
-			y = 250 + (0 - y) * 50;
-		}
+    	r = Math.random()
+    	if (r < 0.5) {
+    	    y++;
+    	} else {
+    		y--;
+    	}
 		if (x > canvas.width) {
 			x = 0;
 		} else {
