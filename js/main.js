@@ -24,6 +24,12 @@ var wave = (function (){
 
 	var animate = function () {
 		draw();
+		y = Math.sin(x * Math.PI / 180);
+		if(y >= 0 ) {
+			y = 100 - (y - 0) * 50;
+		} else {
+			y = 250 + (0 - y) * 50;
+		}
 		if (x > canvas.width) {
 			x = 0;
 		} else {
