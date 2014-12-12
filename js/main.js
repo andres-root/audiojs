@@ -5,7 +5,7 @@ var wave = (function (){
 	var x = 0;
 	var y = window.innerHeight / 2;
 	var radius = 1/2;
-    var frameRate = 10
+    var frameRate = 1;
 	context.fillStyle = "rgba(0, 0, 0, 1.0)";
 	context.fillRect(0, 0, canvas.width, canvas.height);
 	canvas.width = window.innerWidth;
@@ -17,7 +17,7 @@ var wave = (function (){
 	};
 
 	var draw = function () {
-		context.arc(x, y, radius, 0, 2 * Math.PI, false);
+		context.fillRect(x, y, Math.sin(x * Math.PI/180) * 5, Math.sin(x * Math.PI/180 * 5));
 		context.fillStyle = '#0f0';
 		context.fill();
 	};
