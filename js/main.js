@@ -32,6 +32,7 @@ var wave = (function (){
     	}
 		if (x > canvas.width) {
 			x = 0;
+  			context.clearRect(0, 0, canvas.width, canvas.height);
 		} else {
 			x++;
 		}
