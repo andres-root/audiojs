@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.ready(function() {
 	// Wave Function
 	var wave = (function (){
 		var canvas = document.getElementById("canvas");
