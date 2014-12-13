@@ -1,4 +1,3 @@
 audiojs
 =======
-
-AudioJS
+http://andres-root.github.io/audiojs/
