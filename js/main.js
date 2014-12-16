@@ -56,6 +56,7 @@ var sound = (function () {
 	var gain = context.createGain();
 
 	var play = function () {
+		carrier.frequency.value = 100;
 		carrier.connect(gain);
 		gain.connect(context.destination);
 		carrier.start(0);
