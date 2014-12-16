@@ -59,10 +59,10 @@ var sound = (function () {
 		carrier.frequency.value = 100;
 		carrier.connect(gain);
 		gain.connect(context.destination);
-		carrier.start(0);
 
 		modulator.frequency.value = 5;
-		modulator.connect(gain.gain);
+ 		modulator.connect(gain.gain);
+		carrier.start(0);
 		modulator.start(0);
 	};
 	return {
