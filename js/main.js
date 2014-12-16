@@ -60,6 +60,7 @@ var sound = (function () {
 		carrier.connect(gain);
 		gain.connect(context.destination);
 
+		modulator.detune.value = 1000;
 		modulator.frequency.value = 5;
  		modulator.connect(gain.gain);
 		carrier.start(0);
