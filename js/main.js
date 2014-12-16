@@ -51,14 +51,18 @@ var wave = (function (){
 // Sound Generator
 var sound = (function () {
 	var context = new AudioContext();
-	var oscillator = context.createOscillator();
+	var carrier = context.createOscillator();
+	var modulator = context.createOscillator();
 	var gain = context.createGain();
 
 	var play = function () {
-		oscillator.frequency.value = 100;
-		oscillator.connect(gain);
+		carrier.connect(gain);
 		gain.connect(context.destination);
-		oscillator.start();
+		carrier.start(0);
+
+		modulator.frequency.value = 5;
+		modulator.connect(gain.gain);
+		modulator.start(0);
 	};
 	return {
 		play: play
