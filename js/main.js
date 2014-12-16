@@ -47,4 +47,21 @@ var wave = (function (){
 		start: start
 	}
 })();
+
+// Sound Generator
+var sound = (function () {
+	var ctx = new AudioContext();
+	var osc = ctx.createOscillator();
+	var gain = ctx.createGain();
+
+	var play = function () {
+		osc.connect(gain);
+		gain.connect(ctx.destination);
+		osc.start(0);
+	};
+	return {
+		play: play
+	}
+})();
+sound.play();
 wave.start();
