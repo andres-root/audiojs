@@ -50,14 +50,15 @@ var wave = (function (){
 
 // Sound Generator
 var sound = (function () {
-	var ctx = new AudioContext();
-	var osc = ctx.createOscillator();
-	var gain = ctx.createGain();
+	var context = new AudioContext();
+	var oscillator = context.createOscillator();
+	var gain = context.createGain();
 
 	var play = function () {
-		osc.connect(gain);
-		gain.connect(ctx.destination);
-		osc.start(0);
+		oscillator.frequency.value = 100;
+		oscillator.connect(gain);
+		gain.connect(context.destination);
+		oscillator.start();
 	};
 	return {
 		play: play
