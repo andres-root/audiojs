@@ -6,10 +6,9 @@ var oscillator = (function () {
 	var modulator = context.createOscillator();
 	var gain = context.createGain();
 	var analyser = context.createAnalyser();
-	analyser.fftSize = 2048;
+	analyser.fftSize = 1024;
 	var bufferLength = analyser.frequencyBinCount;
 	var dataArray = new Uint8Array(bufferLength);
-	analyser.getByteTimeDomainData(dataArray);
 
 	// Creating canvas
 	var canvas = document.getElementById("canvas");
@@ -22,14 +21,15 @@ var oscillator = (function () {
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
-		carrier.frequency.value = 100;
+		carrier.type = 'sine';
+		carrier.frequency.value = 1000;
 		carrier.connect(gain);
+		carrier.connect(analyser);
 		gain.connect(context.destination);
 		carrier.start(0);
 
-		modulator.frequency.value = 1;
+		modulator.frequency.value = 10;
  		modulator.connect(gain.gain);
-		modulator.connect(analyser);
 		modulator.start(0);
 	};
 
@@ -37,8 +37,8 @@ var oscillator = (function () {
 		requestAnimationFrame(draw);
 
       	analyser.getByteTimeDomainData(dataArray);
-  		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.beginPath();
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		var sliceWidth = canvas.width * 1.0 / bufferLength;
       	var x = 0;
       	for(var i = 0; i < bufferLength; i++) {
