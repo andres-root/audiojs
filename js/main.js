@@ -17,7 +17,7 @@ var oscillator = (function () {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	ctx.lineWidth = 1;
+	ctx.lineWidth = 2;
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
