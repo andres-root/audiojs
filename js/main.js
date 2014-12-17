@@ -42,7 +42,6 @@ var oscillator = (function () {
 		var sliceWidth = canvas.width * 1.0 / bufferLength;
       	var x = 0;
       	for(var i = 0; i < bufferLength; i++) {
-      		console.log("here: " + dataArray[i])
   	        var v = dataArray[i] / 128.0;
   	        var y = v * canvas.height/2;
 
