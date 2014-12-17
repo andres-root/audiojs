@@ -26,15 +26,14 @@ var oscillator = (function () {
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
-		carrier.frequency.value = 100;
 		carrier.connect(gain);
-		carrier.connect(analyser);
 		gain.connect(context.destination);
+		carrier.start(0);
 
-		modulator.detune.value = 1000;
+		modulator.detune.value = 100;
 		modulator.frequency.value = 5;
  		modulator.connect(gain.gain);
-		carrier.start(0);
+		modulator.connect(analyser);
 		modulator.start(0);
 	};
 
