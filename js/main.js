@@ -48,9 +48,9 @@ var wave = (function (){
 
 	var draw = function () {
 		ctx.beginPath();
-		var sliceWidth = canvas.width * 1.0 / bufferLength;
+		var sliceWidth = canvas.width * 1.0 / oscillator.bufferLength;
       	var x = 0;
-      	for(var i = 0; i < bufferLength; i++) {
+      	for(var i = 0; i < oscillator.bufferLength; i++) {
   	        var v = dataArray[i] / 128.0;
   	        var y = v * canvas.height/2;
 
@@ -62,6 +62,8 @@ var wave = (function (){
 
   	        x += sliceWidth;
       	}
+      	ctx.lineTo(canvas.width, canvas.height/2);
+      	ctx.stroke();
 	};
 
 	var animate = function () {
@@ -89,5 +91,5 @@ var wave = (function (){
 		start: start
 	}
 })(oscillator|| {});
-wave.start();
 oscillator.play();
+wave.start();
