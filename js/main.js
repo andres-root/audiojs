@@ -1,7 +1,7 @@
 
 
 // Sound Generator
-var sound = (function () {
+var oscillator = (function () {
 	var context = new AudioContext();
 	var carrier = context.createOscillator();
 	var modulator = context.createOscillator();
@@ -71,6 +71,6 @@ var wave = (function (){
 	return {
 		start: start
 	}
-})();
+})(oscillator|| {});
 wave.start();
-sound.play();
+oscillator.play();
