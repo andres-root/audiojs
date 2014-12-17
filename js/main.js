@@ -21,20 +21,19 @@ var oscillator = (function () {
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
-		carrier.type = 'sine';
+		carrier.type = 'sin';
 		carrier.frequency.value = 100;
-		carrier.connect(gain);
 		gain.connect(context.destination);
+		carrier.connect(gain);
 		carrier.start(0);
 
 		modulator.frequency.value = 1;
  		modulator.connect(gain.gain);
 	 	gain.connect(analyser);
-		modulator.start(0);
+		modulator.start(3);
 	};
 
 	var draw = function () {
-		requestAnimationFrame(draw);
 
       	analyser.getByteTimeDomainData(dataArray);
 		ctx.beginPath();
@@ -55,6 +54,7 @@ var oscillator = (function () {
       	}
       	ctx.lineTo(canvas.width, canvas.height/2);
       	ctx.stroke();
+		requestAnimationFrame(draw);
 	};
 
 	var start = function () {
