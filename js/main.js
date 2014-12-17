@@ -1,7 +1,6 @@
-
-
 // Sound Generator
 var oscillator = (function () {
+	// Creating oscillator
 	var context = new AudioContext();
 	var carrier = context.createOscillator();
 	var modulator = context.createOscillator();
@@ -12,7 +11,7 @@ var oscillator = (function () {
 	var dataArray = new Uint8Array(bufferLength);
 	analyser.getByteTimeDomainData(dataArray);
 
-
+	// Creating canvas
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext('2d');
 	var x = 0;
@@ -68,40 +67,4 @@ var oscillator = (function () {
 	}
 })();
 
-// Wave Function
-var wave = (function (){
-	
-
-
-	var setUp = function () {
-	};
-
-	
-
-	var animate = function () {
-		draw();
-    	r = Math.random()
-    	if (r < 0.5) {
-    	    y++;
-    	} else {
-    		y--;
-    	}
-		if (x > canvas.width) {
-			x = 0;
-			y = window.innerHeight / 2;
-  			ctx.clearRect(0, 0, canvas.width, canvas.height);
-		} else {
-			x++;
-		}
-	}
-
-	var start = function () {
-    	setInterval(animate, frameRate)
-	}
-
-	return {
-		start: start
-	}
-})(oscillator|| {});
 oscillator.play();
-wave.start();
