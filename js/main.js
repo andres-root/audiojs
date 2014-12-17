@@ -3,8 +3,8 @@ var oscillator = (function () {
 	// Creating oscillator
 	var context = new AudioContext();
 	var carrier = context.createOscillator();
+	var modulator = context.createOscillator();
 	var gain = context.createGain();
-
 	var analyser = context.createAnalyser();
 	analyser.fftSize = 2048;
 	var bufferLength = analyser.frequencyBinCount;
@@ -26,12 +26,16 @@ var oscillator = (function () {
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
-		carrier.type = 'square'
 		carrier.frequency.value = 100;
 		carrier.connect(gain);
 		carrier.connect(analyser);
 		gain.connect(context.destination);
+
+		modulator.detune.value = 1000;
+		modulator.frequency.value = 5;
+ 		modulator.connect(gain.gain);
 		carrier.start(0);
+		modulator.start(0);
 	};
 
 	var draw = function () {
