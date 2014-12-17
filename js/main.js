@@ -6,6 +6,10 @@ var oscillator = (function () {
 	var carrier = context.createOscillator();
 	var modulator = context.createOscillator();
 	var gain = context.createGain();
+	var analyser = context.createAnalyser();
+	analyser.fftSize = 2048;
+	var bufferLength = analyser.frequencyBinCount;
+	var dataArray = new Uint8Array(bufferLength);
 
 	var play = function () {
 		carrier.frequency.value = 100;
@@ -26,25 +30,26 @@ var oscillator = (function () {
 // Wave Function
 var wave = (function (){
 	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');
 	var x = 0;
 	var y = window.innerHeight / 2;
 	var radius = 1/2;
     var frameRate = 1;
-	context.fillStyle = "rgba(0, 0, 0, 1.0)";
+	ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-	context.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = '#0f0';
 
 
 	var setUp = function () {
 	};
 
 	var draw = function () {
-		context.beginPath();
-		context.arc(x, y, radius, 0, 2 * Math.PI, false);
-		context.fillStyle = '#0f0';
-		context.fill();
+		ctx.beginPath();
+		var sliceWidth = WIDTH * 1.0 / bufferLength;
+      	var x = 0;
 	};
 
 	var animate = function () {
@@ -58,7 +63,7 @@ var wave = (function (){
 		if (x > canvas.width) {
 			x = 0;
 			y = window.innerHeight / 2;
-  			context.clearRect(0, 0, canvas.width, canvas.height);
+  			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		} else {
 			x++;
 		}
