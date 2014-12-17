@@ -61,10 +61,14 @@ var oscillator = (function () {
       	ctx.stroke();
 	};
 
+	var start = function () {
+		play();
+		draw();
+	}
+
 	return {
-		play: play,
-		draw: draw
+		start: start
 	}
 })();
 
-oscillator.play();
+oscillator.start();
