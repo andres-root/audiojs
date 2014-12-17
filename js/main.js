@@ -6,7 +6,7 @@ var oscillator = (function () {
 	var modulator = context.createOscillator();
 	var gain = context.createGain();
 	var analyser = context.createAnalyser();
-	analyser.fftSize = 1024;
+	analyser.fftSize = 2048;
 	var bufferLength = analyser.frequencyBinCount;
 	var dataArray = new Uint8Array(bufferLength);
 
@@ -24,12 +24,12 @@ var oscillator = (function () {
 		carrier.type = 'sine';
 		carrier.frequency.value = 100;
 		carrier.connect(gain);
-		carrier.connect(analyser);
 		gain.connect(context.destination);
 		carrier.start(0);
 
 		modulator.frequency.value = 1;
  		modulator.connect(gain.gain);
+	 	gain.connect(analyser);
 		modulator.start(0);
 	};
 
