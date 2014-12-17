@@ -10,6 +10,21 @@ var oscillator = (function () {
 	analyser.fftSize = 2048;
 	var bufferLength = analyser.frequencyBinCount;
 	var dataArray = new Uint8Array(bufferLength);
+	analyser.getByteTimeDomainData(dataArray);
+
+
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext('2d');
+	var x = 0;
+	var y = window.innerHeight / 2;
+	var radius = 1/2;
+    var frameRate = 1;
+	ctx.fillStyle = 'rgb(200, 200, 200)';
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
 		carrier.frequency.value = 100;
@@ -22,31 +37,12 @@ var oscillator = (function () {
 		carrier.start(0);
 		modulator.start(0);
 	};
-	return {
-		play: play
-	}
-})();
-
-// Wave Function
-var wave = (function (){
-	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext('2d');
-	var x = 0;
-	var y = window.innerHeight / 2;
-	var radius = 1/2;
-    var frameRate = 1;
-	ctx.fillStyle = "rgba(0, 0, 0, 1.0)";
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	ctx.lineWidth = 2;
-	ctx.strokeStyle = '#0f0';
-
-
-	var setUp = function () {
-	};
 
 	var draw = function () {
+		drawVisual = requestAnimationFrame(draw);
+
+      	oscillator.analyser.getByteTimeDomainData(dataArray);
+
 		ctx.beginPath();
 		var sliceWidth = canvas.width * 1.0 / oscillator.bufferLength;
       	var x = 0;
@@ -65,6 +61,22 @@ var wave = (function (){
       	ctx.lineTo(canvas.width, canvas.height/2);
       	ctx.stroke();
 	};
+
+	return {
+		play: play,
+		draw: draw
+	}
+})();
+
+// Wave Function
+var wave = (function (){
+	
+
+
+	var setUp = function () {
+	};
+
+	
 
 	var animate = function () {
 		draw();
