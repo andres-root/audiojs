@@ -50,6 +50,18 @@ var wave = (function (){
 		ctx.beginPath();
 		var sliceWidth = WIDTH * 1.0 / bufferLength;
       	var x = 0;
+      	for(var i = 0; i < bufferLength; i++) {
+  	        var v = dataArray[i] / 128.0;
+  	        var y = v * canvas.height/2;
+
+  	        if(i === 0) {
+  	          ctx.moveTo(x, y);
+  	        } else {
+  	          ctx.lineTo(x, y);
+  	        }
+
+  	        x += sliceWidth;
+      	}
 	};
 
 	var animate = function () {
