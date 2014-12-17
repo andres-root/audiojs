@@ -14,10 +14,6 @@ var oscillator = (function () {
 	// Creating canvas
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext('2d');
-	var x = 0;
-	var y = window.innerHeight / 2;
-	var radius = 1/2;
-    var frameRate = 1;
 	ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -26,19 +22,19 @@ var oscillator = (function () {
 	ctx.strokeStyle = '#0f0';
 
 	var play = function () {
+		carrier.frequency.value = 100;
 		carrier.connect(gain);
 		gain.connect(context.destination);
 		carrier.start(0);
 
-		modulator.detune.value = 100;
-		modulator.frequency.value = 5;
+		modulator.frequency.value = 1;
  		modulator.connect(gain.gain);
 		modulator.connect(analyser);
 		modulator.start(0);
 	};
 
 	var draw = function () {
-		drawVisual = requestAnimationFrame(draw);
+		requestAnimationFrame(draw);
 
       	analyser.getByteTimeDomainData(dataArray);
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
