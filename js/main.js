@@ -10,6 +10,7 @@ var oscillator = (function () {
 	var bufferLength = analyser.frequencyBinCount;
 	var dataArray = new Uint8Array(bufferLength);
 
+
 	// Creating canvas
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext('2d');
@@ -30,14 +31,13 @@ var oscillator = (function () {
 		modulator.frequency.value = 1;
  		modulator.connect(gain.gain);
 	 	gain.connect(analyser);
-		modulator.start(3);
+		modulator.start(2);
 	};
 
 	var draw = function () {
-
       	analyser.getByteTimeDomainData(dataArray);
-		ctx.beginPath();
   		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
 		var sliceWidth = canvas.width * 1.0 / bufferLength;
       	var x = 0;
       	for(var i = 0; i < bufferLength; i++) {
