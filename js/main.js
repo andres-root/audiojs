@@ -18,7 +18,7 @@ var oscillator = (function () {
 	var y = window.innerHeight / 2;
 	var radius = 1/2;
     var frameRate = 1;
-	ctx.fillStyle = 'rgb(200, 200, 200)';
+	ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -42,7 +42,7 @@ var oscillator = (function () {
 		drawVisual = requestAnimationFrame(draw);
 
       	analyser.getByteTimeDomainData(dataArray);
-
+  		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.beginPath();
 		var sliceWidth = canvas.width * 1.0 / bufferLength;
       	var x = 0;
