@@ -1,3 +1,28 @@
+
+
+// Sound Generator
+var sound = (function () {
+	var context = new AudioContext();
+	var carrier = context.createOscillator();
+	var modulator = context.createOscillator();
+	var gain = context.createGain();
+
+	var play = function () {
+		carrier.frequency.value = 100;
+		carrier.connect(gain);
+		gain.connect(context.destination);
+
+		modulator.detune.value = 1000;
+		modulator.frequency.value = 5;
+ 		modulator.connect(gain.gain);
+		carrier.start(0);
+		modulator.start(0);
+	};
+	return {
+		play: play
+	}
+})();
+
 // Wave Function
 var wave = (function (){
 	var canvas = document.getElementById("canvas");
@@ -47,28 +72,5 @@ var wave = (function (){
 		start: start
 	}
 })();
-
-// Sound Generator
-var sound = (function () {
-	var context = new AudioContext();
-	var carrier = context.createOscillator();
-	var modulator = context.createOscillator();
-	var gain = context.createGain();
-
-	var play = function () {
-		carrier.frequency.value = 100;
-		carrier.connect(gain);
-		gain.connect(context.destination);
-
-		modulator.detune.value = 1000;
-		modulator.frequency.value = 5;
- 		modulator.connect(gain.gain);
-		carrier.start(0);
-		modulator.start(0);
-	};
-	return {
-		play: play
-	}
-})();
-sound.play();
 wave.start();
+sound.play();
