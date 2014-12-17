@@ -22,13 +22,13 @@ var oscillator = (function () {
 
 	var play = function () {
 		carrier.type = 'sine';
-		carrier.frequency.value = 1000;
+		carrier.frequency.value = 100;
 		carrier.connect(gain);
 		carrier.connect(analyser);
 		gain.connect(context.destination);
 		carrier.start(0);
 
-		modulator.frequency.value = 10;
+		modulator.frequency.value = 1;
  		modulator.connect(gain.gain);
 		modulator.start(0);
 	};
