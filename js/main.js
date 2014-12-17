@@ -48,7 +48,7 @@ var wave = (function (){
 
 	var draw = function () {
 		ctx.beginPath();
-		var sliceWidth = WIDTH * 1.0 / bufferLength;
+		var sliceWidth = canvas.width * 1.0 / bufferLength;
       	var x = 0;
       	for(var i = 0; i < bufferLength; i++) {
   	        var v = dataArray[i] / 128.0;
